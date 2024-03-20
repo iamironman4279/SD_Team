@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for file input styling */
+        .custom-file-input1, .custom-file-input2 {
+            color: white;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .custom-file-input1::-webkit-file-upload-button, .custom-file-input2::-webkit-file-upload-button {
+            color: white;
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            cursor: pointer;
+        }
+        .custom-file-input1::-webkit-file-upload-button:hover, .custom-file-input2::-webkit-file-upload-button:hover {
+            background-color: #0056b3;
+        }
+        /* Reduced image size */
+        .img-reduced {
+            width: 20%; /* Reduce width by 2X */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Upload images:</h2>
+        <form action="/" method="post" enctype="multipart/form-data" class="mt-3">
+            <div class="form-group">
+                <label for="file1">Input 1 Image:</label>
+                <input type="file" name="file1" id="file1" accept="image/*" class="form-control-file custom-file-input1" required>
+                <img id="preview1" src="#" alt="Input 1 Image" class="img-fluid mt-3 d-none img-reduced">
+            </div>
+            <div class="form-group">
+                <label for="file2">Input 2 Image:</label>
+                <input type="file" name="file2" id="file2" accept="image/*" class="form-control-file custom-file-input2" required>
+                <img id="preview2" src="#" alt="Input 2 Image" class="img-fluid mt-3 d-none img-reduced">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+        </form>
+    </div>
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <p>&copy; 2024 Sireesha Chaganti, Dharahasini Jakkala</p>
+        </div>
+    </footer>
+
+    <script>
+        // Function to preview image before uploading
+        function previewImage(input, imgId) {
+            var preview = document.getElementById(imgId);
+            var file = input.files[0];
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.classList.remove("d-none"); // Show the image
+            }
+
+            if (file) {
+                reader.readAsDataURL(file); // Read the image file as a data URL
+            }
+        }
+
+        // Event listeners for file input changes
+        document.getElementById("file1").addEventListener("change", function() {
+            previewImage(this, 'preview1');
+        });
+
+        document.getElementById("file2").addEventListener("change", function() {
+            previewImage(this, 'preview2');
+        });
+    </script>
+</body>
+</html>

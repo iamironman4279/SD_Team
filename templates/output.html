@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Output Image</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Reduced image size */
+        .img-reduced {
+            width: 20%; /* Reduce width by 2X */
+            height: auto; /* Maintain aspect ratio */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Modified Image:</h2>
+        <img src="{{ url_for('output_file', filename=output_image) }}" alt="Output Image" class="img-fluid mt-3 img-reduced">
+    </div>
+    <footer class="footer mt-auto py-3">
+        <div class="container text-center">
+            <p>&copy; 2024 Sireesha Chaganti, Dharahasini Jakkala</p>
+        </div>
+    </footer>
+</body>
+</html>
